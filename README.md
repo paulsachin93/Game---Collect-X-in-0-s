@@ -1,1 +1,1 @@
-# Game---Collect-X-in-0-s
+# Game of Zero and Crosses
