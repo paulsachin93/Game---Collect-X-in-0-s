@@ -1,0 +1,108 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Game of Zero and Crosses</title>
+    <link rel="stylesheet" href="t1.css">
+</head>
+
+<body>
+    <H1>Collect X</H1>
+    <div id=clock>Time:0</div>
+    <div id=score>Score:0</div>
+    <BUTTON onclick="start();">START</BUTTON>
+    <table id=grid>
+    </table>
+
+    <script>
+        var grid = document.getElementById("grid");
+        var score = 0;
+        var sec = 0;
+        var time;
+        var f = 0;
+        initial();
+
+        function initial() {
+            grid.innerHTML = "";
+            for (var i = 0; i < 5; i++) {
+                row = grid.insertRow(i);
+                row.innerHTML = "0";
+                for (var j = 0; j < 8; j++) {
+                    cell = row.insertCell(j);
+                    cell.innerHTML = "0";
+                }
+            }
+        }
+
+        function start() {
+            grid.innerHTML = "";
+            for (var i = 0; i < 5; i++) {
+                row = grid.insertRow(i);
+                row.innerHTML = "0";
+                for (var j = 0; j < 8; j++) {
+                    cell = row.insertCell(j);
+                    cell.innerHTML = "0";
+                    cell.onclick = function() {
+                        clickCell(this);
+                    };
+                    var x = document.createAttribute("data-X");
+                    x.value = "false";
+                    cell.setAttributeNode(x);
+                }
+            }
+            addX();
+        }
+
+        function addX() {
+            for (var i = 0; i < 1; i++) {
+                var row = Math.floor(Math.random() * 5);
+                var col = Math.floor(Math.random() * 8);
+                var cell = grid.rows[row].cells[col];
+                cell.setAttribute("data-X", "true");
+                cell.innerHTML = "X";
+            }
+            f = 1;
+            time = setInterval(() => {
+                timer()
+            }, 1000);
+        }
+
+        function clickCell(cell) {
+            addX();
+            cell.innerHTML = "0";
+            if (cell.getAttribute("data-X") == "true") {
+                score++;
+                document.getElementById("score").innerHTML = "Score:" + score;
+                cell.setAttribute("data-X", "false");
+            } else {
+                score--;
+                document.getElementById("score").innerHTML = "Score:" + score;
+            }
+
+        }
+
+        function stop() {
+            alert("Game over! Your score is " + score);
+            sec = 0;
+            score = 0;
+            f = 0;
+            initial();
+            clearInterval(time);
+            document.getElementById("clock").innerHTML = "Time:" + sec;
+        }
+
+        function timer() {
+            if (sec == 10) {
+                stop();
+            }
+            if (f == 1) {
+                sec++;
+                document.getElementById("clock").innerHTML = "Time:" + sec;
+            }
+        };
+    </script>
+</body>
+
+</html>

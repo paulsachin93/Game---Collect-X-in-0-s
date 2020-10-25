@@ -1,0 +1,54 @@
+BODY {
+    background: white;
+    color: black;
+    font-family: courier new;
+    text-align: center;
+}
+
+H1 {
+    text-align: center;
+    font-size: 20pt;
+    font-weight: normal;
+}
+
+#clock {
+    text-align: center;
+}
+
+#grid {
+    margin-left: auto;
+    margin-right: auto;
+    background: black;
+}
+
+#grid:hover {
+    background: black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#grid TR TD {
+    border: 1px solid black;
+    background: #999999;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 25px;
+}
+
+#grid TR TD:hover {
+    border: 1px solid black;
+    background: lightgreen;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 25px;
+}
+
+#grid TR TD.clicked {
+    background: #333333;
+}
+
+BUTTON {
+    margin: 12px;
+}
